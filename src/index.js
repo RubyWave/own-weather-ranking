@@ -1,8 +1,6 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import Hello from "./js/Hello";
 
-const container = document.getElementById("root");
-const root = createRoot(container);
+//styles
+import './scss/app.scss';
 
-root.render(<Hello />);
+//scripts
+import './js/app.js';
