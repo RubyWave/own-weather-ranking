@@ -3,4 +3,4 @@
 import './scss/app.scss';
 
 //scripts
-import './js/app.js';
+import './js/index.js';
