@@ -1,4 +1,5 @@
 import { usePreListDispatcher } from "../contexts/PreList";
+import closeIcon from '../../../public/images/close-icon.svg';
 
 export default function SingleCityForList ({name, id}){
 
@@ -13,9 +14,8 @@ export default function SingleCityForList ({name, id}){
 
     return(
         <li className="single-city-for-list">
-            <span className="single-city-for-list__name">{id} </span>
             <span className="single-city-for-list__name">{name} </span>
-            <span className="single-city-for-list__remover" onClick={handleClick}>(r)</span>
+            <img className="single-city-for-list__remover" onClick={handleClick} src={closeIcon}/>
 
         </li>
     );

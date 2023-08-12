@@ -1,6 +1,6 @@
 
 //styles
-import './scss/app.scss';
+import './scss/main.scss';
 
 //scripts
 import './js/index.js';

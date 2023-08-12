@@ -43,7 +43,7 @@ export default function ListAdder() {
     return (
         <div className="list-adder">
             <input type="text" onChange={handleNameChange} value={textInput}></input>
-            <button onClick={handleClick}>
+            <button onClick={handleClick} className="button">
                 Add city
             </button>
         </div>

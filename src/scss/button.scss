@@ -1,0 +1,14 @@
+.button {
+    border-radius: 1rem;
+    border: 0;
+    background: #9A9DA9;
+    transition: background $transistion-timing;
+    padding: .25rem .75rem;
+    color: #fff;
+    cursor: pointer;
+    font-family: "Exo 2";
+
+    &:hover {
+        background: #6B6E71;
+    }
+}

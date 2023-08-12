@@ -1,0 +1,49 @@
+.list-creator {
+    border: 1px solid $border-color;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    border-radius: .5rem;
+}
+.list-adder {
+    display: flex;
+    gap: .75rem;
+    input {
+        border-radius: 2rem;
+        border: 1px solid $dark-border-color;
+        padding: .33rem 1rem;
+        transition: box-shadow $transistion-timing;
+        box-shadow: 0px 4px 7px 0px rgba($box-shadow-color, 0);
+    
+
+        &:focus {
+            outline: 0;
+            box-shadow: 0px 4px 7px 0px rgba($box-shadow-color, .3);
+        }
+    }
+}
+
+.pre-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+.single-city-for-list {
+    display: flex;
+    align-items: center;
+    gap: .125rem;
+    &__remover {
+        width: 1rem;
+        height: 1rem;
+        cursor: pointer;
+        transform: rotate(0deg);
+        transition: transform $transistion-timing;
+
+        &:hover {
+            transform: rotate(90deg);
+        }
+    }
+}
