@@ -1,37 +1,38 @@
-import {getPreList} from "../contexts/PreList";
-import normalizeName from "../normalizeName"; 
+import { getPreList } from "../contexts/PreList";
+import normalizeName from "../normalizeName";
 
 export default function DataFetcher() {
-    const originalPreList = getPreList();
+	const originalPreList = getPreList();
 
-    //generate list of weathers in given cities
-    function generateReadyList() {
-        let listWeathers = [];
-        const preList = originalPreList;
-        let curentListPosition = 1;
-        
-        async function getWeatherForSingleCity() {
-            let cityName = preList[curentListPosition].name;
-            if(cityName === undefined) return;
+	//generate list of weathers in given cities
+	function generateReadyList() {
+		let listWeathers = [];
+		const preList = originalPreList;
+		let curentListPosition = 1;
 
-            cityName = normalizeName(cityName);
+		async function getWeatherForSingleCity() {
+			let cityName = preList[curentListPosition].name;
+			if (cityName === undefined) return;
 
-            const response = await fetch('https://geocode.maps.co/search?q=' + cityName);
-            const myJson = await response.json(); //extract JSON from the http response
-            // do something with myJson
-            console.log(myJson);
-        }
-        getWeatherForSingleCity();
-    }
+			cityName = normalizeName(cityName);
 
-    function handleClick() {
+			const response = await fetch(
+				"https://geocode.maps.co/search?q=" + cityName,
+			);
+			const myJson = await response.json(); //extract JSON from the http response
+			// do something with myJson
+			console.log(myJson);
+		}
+		getWeatherForSingleCity();
+	}
 
-        generateReadyList()
-        return;
-    }
-    return (
-        <button onClick={handleClick} className="button">
-            Fetch data
-        </button>
-    );
+	function handleClick() {
+		generateReadyList();
+		return;
+	}
+	return (
+		<button onClick={handleClick} className="button">
+			Fetch data
+		</button>
+	);
 }

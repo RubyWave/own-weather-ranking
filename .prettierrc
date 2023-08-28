@@ -1,0 +1,8 @@
+{
+    "__comment": "for now, this needs to be synchronized manually with settings in .eslintrc, it will be fixed in future",
+    "endOfLine": "auto",
+    "singleQuote": false,
+    "printWidth": 80,
+    "tabWidth": 4,
+    "useTabs": true
+}

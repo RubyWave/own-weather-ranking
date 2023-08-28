@@ -1,6 +1,5 @@
-
 //styles
-import './scss/main.scss';
+import "./scss/main.scss";
 
 //scripts
-import './js/index.js';
+import "./js/index.js";
