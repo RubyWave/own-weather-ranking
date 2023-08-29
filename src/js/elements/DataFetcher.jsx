@@ -1,5 +1,6 @@
 import { getPreList } from "../contexts/PreList";
-import normalizeName from "../normalizeName";
+import getCityCoords from "../apis/geocoding";
+import getCoordsWeather from "../apis/weatherFetching";
 
 export default function DataFetcher() {
 	const originalPreList = getPreList();
@@ -7,22 +8,21 @@ export default function DataFetcher() {
 	//generate list of weathers in given cities
 	function generateReadyList() {
 		const preList = originalPreList;
-		let curentListPosition = 1;
 
-		async function getWeatherForSingleCity() {
-			let cityName = preList[curentListPosition].name;
-			if (cityName === undefined) return;
+		async function getWeathers(cityName) {
+			console.log("getting weather for first city: " + cityName);
+			const coords = await getCityCoords(cityName);
 
-			cityName = normalizeName(cityName);
-
-			const response = await fetch(
-				"https://geocode.maps.co/search?q=" + cityName,
-			);
-			const myJson = await response.json(); //extract JSON from the http response
-			// do something with myJson
-			console.log(myJson);
+			let weather = await getCoordsWeather(coords);
+			weather["cityName"] = cityName;
+			console.log(weather);
 		}
-		getWeatherForSingleCity();
+
+		(async () => {
+			for (const city of preList) {
+				await getWeathers(city.name);
+			}
+		})();
 	}
 
 	function handleClick() {
