@@ -12,8 +12,8 @@ export default function DataFetcher() {
 	 */
 	function addWeatherToWeathersList(weather, cityID, cityName) {
 		//all weathers are given hourly, so we take only first element of hour array TODO:change it to not be hourly
-		const temp = weather.hourly.temperature_2m;
-		const wndSp = weather.hourly.windspeed_10m;
+		const temp = weather.hourly.temperature_2m[0];
+		const wndSp = weather.hourly.windspeed_10m[0];
 
 		dispatch({
 			type: "add",
@@ -36,7 +36,7 @@ export default function DataFetcher() {
 			// weather["cityName"] = cityName;
 			console.log(weather);
 
-			addWeatherToWeathersList(weather, cityName, cityID);
+			addWeatherToWeathersList(weather, cityID, cityName);
 		}
 
 		(async () => {

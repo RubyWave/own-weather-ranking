@@ -45,6 +45,8 @@ function weathersReducer(weathers, action) {
 				{
 					id: action.id,
 					name: action.name,
+					temperature: action.temperature,
+					windSpeed: action.windSpeed,
 				},
 			];
 		}

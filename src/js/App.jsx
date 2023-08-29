@@ -1,4 +1,5 @@
 import ListCreator from "./elements/ListCreator";
+import WeathersTable from "./elements/WeathersTable";
 import { ListsManager } from "./contexts/PreList";
 import { WeathersManager } from "./contexts/WeathersList";
 
@@ -9,6 +10,7 @@ function App() {
 				<ListsManager>
 					<ListCreator />
 				</ListsManager>
+				<WeathersTable />
 			</WeathersManager>
 		</div>
 	);
