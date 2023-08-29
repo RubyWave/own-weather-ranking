@@ -6,7 +6,6 @@ export default function DataFetcher() {
 
 	//generate list of weathers in given cities
 	function generateReadyList() {
-		let listWeathers = [];
 		const preList = originalPreList;
 		let curentListPosition = 1;
 

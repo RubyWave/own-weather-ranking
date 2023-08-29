@@ -1,5 +1,4 @@
 import { getPreList } from "../contexts/PreList";
-import { useState } from "react";
 import SingleCityForList from "./SingleCityForList";
 
 export default function ListLister() {
