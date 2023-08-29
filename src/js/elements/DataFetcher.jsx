@@ -1,26 +1,47 @@
 import { getPreList } from "../contexts/PreList";
 import getCityCoords from "../apis/geocoding";
 import getCoordsWeather from "../apis/weatherFetching";
+import { useWeathersListDispatcher } from "../contexts/WeathersList";
 
 export default function DataFetcher() {
 	const originalPreList = getPreList();
+	const dispatch = useWeathersListDispatcher();
+
+	/**
+	 * Adds given weather to weathers list via dispatcher
+	 */
+	function addWeatherToWeathersList(weather, cityID, cityName) {
+		//all weathers are given hourly, so we take only first element of hour array TODO:change it to not be hourly
+		const temp = weather.hourly.temperature_2m;
+		const wndSp = weather.hourly.windspeed_10m;
+
+		dispatch({
+			type: "add",
+			id: cityID,
+			name: cityName,
+			temperature: temp,
+			windSpeed: wndSp,
+		});
+	}
 
 	//generate list of weathers in given cities
 	function generateReadyList() {
 		const preList = originalPreList;
 
-		async function getWeathers(cityName) {
+		async function getWeathers(cityName, cityID) {
 			console.log("getting weather for first city: " + cityName);
 			const coords = await getCityCoords(cityName);
 
-			let weather = await getCoordsWeather(coords);
-			weather["cityName"] = cityName;
+			const weather = await getCoordsWeather(coords);
+			// weather["cityName"] = cityName;
 			console.log(weather);
+
+			addWeatherToWeathersList(weather, cityName, cityID);
 		}
 
 		(async () => {
 			for (const city of preList) {
-				await getWeathers(city.name);
+				await getWeathers(city.name, city.id);
 			}
 		})();
 	}

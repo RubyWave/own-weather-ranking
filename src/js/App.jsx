@@ -1,12 +1,15 @@
 import ListCreator from "./elements/ListCreator";
 import { ListsManager } from "./contexts/PreList";
+import { WeathersManager } from "./contexts/WeathersList";
 
 function App() {
 	return (
 		<div className="app">
-			<ListsManager>
-				<ListCreator />
-			</ListsManager>
+			<WeathersManager>
+				<ListsManager>
+					<ListCreator />
+				</ListsManager>
+			</WeathersManager>
 		</div>
 	);
 }
