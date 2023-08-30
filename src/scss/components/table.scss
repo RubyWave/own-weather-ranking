@@ -20,6 +20,12 @@
     &>* {
         border-bottom: 1px solid $border-color;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+    &__sort-image {
+        width: 1.5rem;
+        height: 1.5rem;
     }
 }
 .weather-row {

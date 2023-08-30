@@ -53,6 +53,41 @@ function weathersReducer(weathers, action) {
 		case "remove": {
 			return weathers.filter((weather) => weather.id !== action.id);
 		}
+		case "sortID": {
+			return weathers.sort(function (a, b) {
+				return a.id - b.id;
+			});
+		}
+		case "sortNameAsc": {
+			return weathers.sort(function (a, b) {
+				return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+			});
+		}
+		case "sortNameDesc": {
+			return weathers.sort(function (a, b) {
+				return b.name.toLowerCase().localeCompare(a.name.toLowerCase());
+			});
+		}
+		case "sortTemperatureAsc": {
+			return weathers.sort(function (a, b) {
+				return a.temperature - b.temperature;
+			});
+		}
+		case "sortTemperatureDesc": {
+			return weathers.sort(function (a, b) {
+				return b.temperature - a.temperature;
+			});
+		}
+		case "sortWindSpeedAsc": {
+			return weathers.sort(function (a, b) {
+				return a.windSpeed - b.windSpeed;
+			});
+		}
+		case "sortWindSpeedDesc": {
+			return weathers.sort(function (a, b) {
+				return b.windSpeed - a.windSpeed;
+			});
+		}
 		default: {
 			throw Error("Unknown action: " + action.type);
 		}
