@@ -33,8 +33,6 @@ export default function DataFetcher() {
 			const coords = await getCityCoords(cityName);
 
 			const weather = await getCoordsWeather(coords);
-			// weather["cityName"] = cityName;
-			console.log(weather);
 
 			addWeatherToWeathersList(weather, cityID, cityName);
 		}
