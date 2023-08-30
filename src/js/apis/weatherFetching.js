@@ -22,7 +22,7 @@ export default async function getCoordsWeather(cityCoords) {
 	const myJson = await response.json();
 	weather = myJson;
 
-	await new Promise((resolve) => setTimeout(resolve, 1000)); //wait for 1sec to not spam API
+	await new Promise((resolve) => setTimeout(resolve, 500)); //wait for 0.5sec to not spam API
 
 	return weather;
 }

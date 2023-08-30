@@ -24,7 +24,7 @@ export default async function getCityCoords(cityName) {
 	const firstCity = myJson[0]; //as API returns array of found cities with same name, we select first one, as it is most probably the one we wanted
 	coordinates = { lat: firstCity.lat, lon: firstCity.lon };
 
-	await new Promise((resolve) => setTimeout(resolve, 1000)); //wait for 1sec to not spam API
+	await new Promise((resolve) => setTimeout(resolve, 500)); //wait for 0.5sec to not spam API
 
 	return coordinates;
 }
