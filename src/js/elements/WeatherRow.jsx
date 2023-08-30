@@ -1,8 +1,9 @@
-export default function WeatherRow({ name, temperature }) {
+export default function WeatherRow({ name, temperature, windSpeed }) {
 	return (
-		<li className="weather-row">
+		<div className="tab-row weather-row">
 			<span className="weather-row__name">{name} </span>
 			<span className="weather-row__temperature">{temperature} </span>
-		</li>
+			<span className="weather-row__wind-speed">{windSpeed} </span>
+		</div>
 	);
 }

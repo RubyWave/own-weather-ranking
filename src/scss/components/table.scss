@@ -1,0 +1,32 @@
+.weathers-table {
+    border: 1px solid $dark-border-color;
+    border-radius: .5rem;
+    margin-top: 2rem;
+    .tab-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        &>* {
+            padding: 1rem;
+            &:not(:last-child) {
+                border-right: 1px solid $border-color;
+
+            }
+        }
+    }
+}
+.weathers-table-heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    &>* {
+        border-bottom: 1px solid $border-color;
+        cursor: pointer;
+    }
+}
+.weather-row {
+    &:not(:last-child) {
+        border-bottom: 1px solid $border-color;
+
+
+    }
+
+}

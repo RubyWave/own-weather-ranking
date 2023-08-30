@@ -8,15 +8,14 @@ export default function WeathersTable() {
 	return (
 		<div className="weathers-table">
 			<WeathersTableHeadings />
-			<ul>
-				{weathersList.map((weather) => (
-					<WeatherRow
-						key={weather.id}
-						name={weather.name}
-						temperature={weather.temperature}
-					/>
-				))}
-			</ul>
+			{weathersList.map((weather) => (
+				<WeatherRow
+					key={weather.id}
+					name={weather.name}
+					temperature={weather.temperature}
+					windSpeed={weather.windSpeed}
+				/>
+			))}
 		</div>
 	);
 }
