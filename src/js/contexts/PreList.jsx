@@ -12,19 +12,23 @@ const PreListDispatch = createContext([]);
 const initialCities = [
 	{
 		id: 0,
-		name: "Kraków",
+		name: "Rome",
 	},
 	{
 		id: 1,
-		name: "Gniezno",
+		name: "Osaka",
 	},
 	{
 		id: 2,
-		name: "Szczecin",
+		name: "Huston",
 	},
 	{
 		id: 3,
-		name: "Poznań",
+		name: "Auckland",
+	},
+	{
+		id: 4,
+		name: "Cairo",
 	},
 ];
 
