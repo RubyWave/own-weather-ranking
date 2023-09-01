@@ -6,16 +6,28 @@ import {
 	getWeathersList,
 	useWeathersListDispatcher,
 } from "../contexts/WeathersList";
+import { useFetchProgressDispatcher } from "../contexts/DataFetchProgress";
 
 export default function DataFetcher() {
 	const originalPreList = getPreList();
 	const dispatch = useWeathersListDispatcher();
+	const dispatchDataProgress = useFetchProgressDispatcher();
 	const existingWeatherList = getWeathersList(); //temporary new list, it is used to get unique IDs every single time
 
 	//generate list of weathers in given cities
 	function generateReadyList() {
 		const preList = originalPreList;
 		let newWeathersList = existingWeatherList;
+		let allreadyFetchedCities = 0;
+
+		dispatchDataProgress({
+			type: "changeMax",
+			newMaxProgress: preList.length,
+		});
+		dispatchDataProgress({
+			type: "changeProgress",
+			newProgress: allreadyFetchedCities,
+		});
 
 		//clears weathers list for fresh giveaway of IDs
 		dispatch({
@@ -39,6 +51,10 @@ export default function DataFetcher() {
 		}
 
 		async function getWeathers(cityName) {
+			dispatchDataProgress({
+				type: "changeProgress",
+				newProgress: allreadyFetchedCities++,
+			});
 			console.log("getting weather for first city: " + cityName);
 			const coords = await getCityCoords(cityName);
 			if (coords === false) return; //in case first API didn't found any city
@@ -70,6 +86,14 @@ export default function DataFetcher() {
 					temperature: newWeather.temperature,
 					windSpeed: newWeather.windSpeed,
 				});
+			});
+			dispatchDataProgress({
+				type: "changeMax",
+				newMaxProgress: 0,
+			});
+			dispatchDataProgress({
+				type: "changeProgress",
+				newProgress: 0,
 			});
 		})();
 	}

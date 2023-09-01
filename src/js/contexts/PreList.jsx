@@ -18,6 +18,14 @@ const initialCities = [
 		id: 1,
 		name: "Gniezno",
 	},
+	{
+		id: 2,
+		name: "Szczecin",
+	},
+	{
+		id: 3,
+		name: "Poznań",
+	},
 ];
 
 export function ListsManager({ children }) {
