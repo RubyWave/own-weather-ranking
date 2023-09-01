@@ -42,6 +42,12 @@ export function usePreListDispatcher() {
 function citiesReducer(cities, action) {
 	switch (action.type) {
 		case "add": {
+			let cityAddedAlready = false;
+			cities.forEach((city) => {
+				if (city.name === action.name) cityAddedAlready = true;
+			});
+
+			if (cityAddedAlready) return cities;
 			return [
 				...cities,
 				{
