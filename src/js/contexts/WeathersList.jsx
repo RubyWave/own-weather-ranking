@@ -51,7 +51,10 @@ function weathersReducer(weathers, action) {
 			];
 		}
 		case "remove": {
-			return weathers.filter((weather) => weather.id !== action.id);
+			return weathers.filter((weather) => weather.name !== action.name);
+		}
+		case "clearList": {
+			return [];
 		}
 		case "sortID": {
 			return weathers.sort(function (a, b) {

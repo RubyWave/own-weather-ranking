@@ -1,47 +1,76 @@
 import { getPreList } from "../contexts/PreList";
 import getCityCoords from "../apis/geocoding";
 import getCoordsWeather from "../apis/weatherFetching";
-import { useWeathersListDispatcher } from "../contexts/WeathersList";
+import getFreeID from "../returnFreeID";
+import {
+	getWeathersList,
+	useWeathersListDispatcher,
+} from "../contexts/WeathersList";
 
 export default function DataFetcher() {
 	const originalPreList = getPreList();
 	const dispatch = useWeathersListDispatcher();
-
-	/**
-	 * Adds given weather to weathers list via dispatcher
-	 */
-	function addWeatherToWeathersList(weather, cityID, cityName) {
-		//all weathers are given hourly, so we take only first element of hour array TODO:change it to not be hourly
-		const temp = weather.hourly.temperature_2m[0];
-		const wndSp = weather.hourly.windspeed_10m[0];
-
-		dispatch({
-			type: "add",
-			id: cityID,
-			name: cityName,
-			temperature: temp,
-			windSpeed: wndSp,
-		});
-	}
+	const existingWeatherList = getWeathersList(); //temporary new list, it is used to get unique IDs every single time
 
 	//generate list of weathers in given cities
 	function generateReadyList() {
 		const preList = originalPreList;
+		let newWeathersList = existingWeatherList;
 
-		async function getWeathers(cityName, cityID) {
+		//clears weathers list for fresh giveaway of IDs
+		dispatch({
+			type: "clearList",
+		});
+
+		/**
+		 * Adds given weather to weathers new teporary list
+		 */
+		function addWeatherToWeathersList(weather, cityID, cityName) {
+			//all weathers are given hourly, so we take only first element of hour array TODO:change it to not be hourly
+			const temp = weather.hourly.temperature_2m[0];
+			const wndSp = weather.hourly.windspeed_10m[0];
+
+			newWeathersList.push({
+				id: cityID,
+				name: cityName,
+				temperature: temp,
+				windSpeed: wndSp,
+			});
+		}
+
+		async function getWeathers(cityName) {
 			console.log("getting weather for first city: " + cityName);
 			const coords = await getCityCoords(cityName);
-			if (coords == false) return; //in case first API didn't found any city
+			if (coords === false) return; //in case first API didn't found any city
 
 			const weather = await getCoordsWeather(coords);
 
+			let cityID = getFreeID(newWeathersList);
 			addWeatherToWeathersList(weather, cityID, cityName);
 		}
 
 		(async () => {
-			for (const city of preList) {
-				await getWeathers(city.name, city.id);
+			for (const newCity of preList) {
+				let nonRequestedCity = true; //this flag will be false if city existed on old list
+				existingWeatherList.forEach((oldCity) => {
+					if (oldCity.name === newCity.name) {
+						nonRequestedCity = false;
+						return;
+					}
+				});
+				if (nonRequestedCity) await getWeathers(newCity.name);
 			}
+
+			newWeathersList.forEach((newWeather) => {
+				//add weathers to context, from temporary new weathers list
+				dispatch({
+					type: "add",
+					id: newWeather.id,
+					name: newWeather.name,
+					temperature: newWeather.temperature,
+					windSpeed: newWeather.windSpeed,
+				});
+			});
 		})();
 	}
 

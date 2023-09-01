@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { usePreListDispatcher, getPreList } from "../contexts/PreList";
+import getFreeID from "../returnFreeID";
 
 export default function ListAdder() {
 	const [textInput, setTextInput] = useState("");
@@ -22,26 +23,6 @@ export default function ListAdder() {
 		setTextInput("");
 		dispatch({ type: "add", id: newID, name: textInput });
 		return;
-	}
-
-	/**
-	 * Returns first free ID that can be asigned to a city. Function is required, as cities can be removed from the list freeing id.
-	 */
-	function getFreeID(array) {
-		const sortedArray = array.slice().sort(function (a, b) {
-			return a.id - b.id;
-		});
-		let previousId = -1;
-		for (let element of sortedArray) {
-			if (element.id != previousId + 1) {
-				// Found a gap.
-				return previousId + 1;
-			}
-			previousId = element.id;
-		}
-
-		// Found no gaps.
-		return previousId + 1;
 	}
 
 	return (

@@ -21,7 +21,7 @@ export default async function getCityCoords(cityName) {
 		"https://geocode.maps.co/search?q=" + cityName,
 	);
 	const myJson = await response.json();
-	if (myJson.length == 0) {
+	if (myJson.length === 0) {
 		console.log("couldn't find coors for city: " + cityName);
 		return false;
 	}
