@@ -21,6 +21,11 @@ export default async function getCityCoords(cityName) {
 		"https://geocode.maps.co/search?q=" + cityName,
 	);
 	const myJson = await response.json();
+	if (myJson.length == 0) {
+		console.log("couldn't find coors for city: " + cityName);
+		return false;
+	}
+
 	const firstCity = myJson[0]; //as API returns array of found cities with same name, we select first one, as it is most probably the one we wanted
 	coordinates = { lat: firstCity.lat, lon: firstCity.lon };
 

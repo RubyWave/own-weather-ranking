@@ -31,6 +31,7 @@ export default function DataFetcher() {
 		async function getWeathers(cityName, cityID) {
 			console.log("getting weather for first city: " + cityName);
 			const coords = await getCityCoords(cityName);
+			if (coords == false) return; //in case first API didn't found any city
 
 			const weather = await getCoordsWeather(coords);
 
