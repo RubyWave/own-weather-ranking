@@ -6,6 +6,12 @@ export default function ListAdder() {
 	const dispatch = usePreListDispatcher();
 	const cities = getPreList();
 
+	function handleEnterKeyInput(e) {
+		if (e.key === "Enter") {
+			handleClick();
+		}
+	}
+
 	function handleNameChange(e) {
 		setTextInput(e.target.value);
 		return;
@@ -44,6 +50,7 @@ export default function ListAdder() {
 				type="text"
 				onChange={handleNameChange}
 				value={textInput}
+				onKeyUp={handleEnterKeyInput}
 			></input>
 			<button onClick={handleClick} className="button">
 				Add city
