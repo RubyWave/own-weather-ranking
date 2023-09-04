@@ -8,10 +8,11 @@ export default function WeatherRow({
 	cloudCover,
 	shortwaveRadiation,
 	precipitation,
+	score,
 }) {
 	const dispatch = useWeathersListDispatcher();
 
-	function handleClick(e) {
+	function handleClick() {
 		dispatch({
 			type: "remove",
 			name: name,
@@ -34,6 +35,7 @@ export default function WeatherRow({
 				{shortwaveRadiation} W/m²
 			</span>
 			<span className="weather-row__wind-speed">{precipitation} mm</span>
+			<span className="weather-row__wind-speed">{score}</span>
 		</div>
 	);
 }

@@ -1,0 +1,38 @@
+.score-settings {
+	border: 1px solid $border-color;
+	padding: 1.5rem;
+	border-radius: 0.5rem;
+	position: relative;
+	margin-top: 0.75rem;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	&__title {
+		grid-column: 1 / span 2;
+		margin: 0;
+		margin-bottom: .75rem;
+	}
+}
+.single-slider {
+	margin-bottom: 0.75rem;
+	&__curent-value {
+		margin-left: 3rem;
+		font-size: .875rem;
+	}
+	&__wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		gap: .5rem;
+	}
+	&__min {
+		width: 2.5rem;
+	}
+	&__min,
+	&__max {
+		font-size: .75rem;
+		color: $dark-border-color;
+	}
+	&__label {
+		margin-top: 0.5rem;
+	}
+}

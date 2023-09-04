@@ -115,6 +115,24 @@ export default function WeathersTableHeadings(props) {
 			});
 		}
 	}
+	function changeScoreSorting() {
+		if (props.currentSorting === "scoreAsc") {
+			props.setSorting("scoreDesc");
+			dispatch({
+				type: "sortscoreDesc",
+			});
+		} else if (props.currentSorting === "scoreDesc") {
+			props.setSorting("");
+			dispatch({
+				type: "sortID",
+			});
+		} else {
+			props.setSorting("scoreAsc");
+			dispatch({
+				type: "sortscoreAsc",
+			});
+		}
+	}
 
 	function sortingArrowDisplay(ascName, descName) {
 		if (props.currentSorting === ascName) {
@@ -154,7 +172,7 @@ export default function WeathersTableHeadings(props) {
 				className="weathers-table-heading__wind-speed-column"
 				onClick={changeWindSpeedSorting}
 			>
-				<span>Wind speed</span>
+				<span>Wind Speed</span>
 				{sortingArrowDisplay("windSpeedAsc", "windSpeedDesc")}
 			</div>
 			<div
@@ -180,6 +198,13 @@ export default function WeathersTableHeadings(props) {
 			>
 				<span>Precipitation</span>
 				{sortingArrowDisplay("precipitationAsc", "precipitationDesc")}
+			</div>
+			<div
+				className="weathers-table-heading__score-column"
+				onClick={changeScoreSorting}
+			>
+				<span>Score</span>
+				{sortingArrowDisplay("scoreAsc", "scoreDesc")}
 			</div>
 		</div>
 	);

@@ -127,6 +127,16 @@ function weathersReducer(weathers, action) {
 				return b.precipitation - a.precipitation;
 			});
 		}
+		case "sortscoreAsc": {
+			return weathers.sort(function (a, b) {
+				return a.score - b.score;
+			});
+		}
+		case "sortscoreDesc": {
+			return weathers.sort(function (a, b) {
+				return b.score - a.score;
+			});
+		}
 		default: {
 			throw Error("Unknown action: " + action.type);
 		}

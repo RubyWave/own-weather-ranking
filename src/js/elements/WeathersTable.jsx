@@ -13,6 +13,7 @@ export default function WeathersTable() {
 	 * etc.
 	 */
 	const [currentSorting, setSorting] = useState("");
+	const tempScore = 10;
 
 	return (
 		<div className="weathers-table">
@@ -29,6 +30,7 @@ export default function WeathersTable() {
 					cloudCover={weather.cloudCover}
 					shortwaveRadiation={weather.shortwaveRadiation}
 					precipitation={weather.precipitation}
+					score={tempScore}
 				/>
 			))}
 		</div>
