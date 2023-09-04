@@ -14,6 +14,9 @@ const WeathersListDispatch = createContext([]);
 	name: "Kraków",
 	temperature: "13",
 	windSpeed: "20",
+	cloudCover: "34",
+	shortwaveRadiation: "6",
+	precipitation: "66234",
 },
 */
 const initialWeathers = [];
@@ -47,6 +50,9 @@ function weathersReducer(weathers, action) {
 					name: action.name,
 					temperature: action.temperature,
 					windSpeed: action.windSpeed,
+					cloudCover: action.cloudCover,
+					shortwaveRadiation: action.shortwaveRadiation,
+					precipitation: action.precipitation,
 				},
 			];
 		}
@@ -89,6 +95,36 @@ function weathersReducer(weathers, action) {
 		case "sortWindSpeedDesc": {
 			return weathers.sort(function (a, b) {
 				return b.windSpeed - a.windSpeed;
+			});
+		}
+		case "sortcloudCoverAsc": {
+			return weathers.sort(function (a, b) {
+				return a.cloudCover - b.cloudCover;
+			});
+		}
+		case "sortcloudCoverDesc": {
+			return weathers.sort(function (a, b) {
+				return b.cloudCover - a.cloudCover;
+			});
+		}
+		case "sortshortwaveRadiationAsc": {
+			return weathers.sort(function (a, b) {
+				return a.shortwaveRadiation - b.shortwaveRadiation;
+			});
+		}
+		case "sortshortwaveRadiationDesc": {
+			return weathers.sort(function (a, b) {
+				return b.shortwaveRadiation - a.shortwaveRadiation;
+			});
+		}
+		case "sortprecipitationAsc": {
+			return weathers.sort(function (a, b) {
+				return a.precipitation - b.precipitation;
+			});
+		}
+		case "sortprecipitationDesc": {
+			return weathers.sort(function (a, b) {
+				return b.precipitation - a.precipitation;
 			});
 		}
 		default: {

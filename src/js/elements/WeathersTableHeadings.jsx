@@ -61,6 +61,60 @@ export default function WeathersTableHeadings(props) {
 			});
 		}
 	}
+	function changeCloudCoverSorting() {
+		if (props.currentSorting === "cloudCoverAsc") {
+			props.setSorting("cloudCoverDesc");
+			dispatch({
+				type: "sortcloudCoverDesc",
+			});
+		} else if (props.currentSorting === "cloudCoverDesc") {
+			props.setSorting("");
+			dispatch({
+				type: "sortID",
+			});
+		} else {
+			props.setSorting("cloudCoverAsc");
+			dispatch({
+				type: "sortcloudCoverAsc",
+			});
+		}
+	}
+	function changeShortwaveRadiationSorting() {
+		if (props.currentSorting === "shortwaveRadiationAsc") {
+			props.setSorting("shortwaveRadiationDesc");
+			dispatch({
+				type: "sortshortwaveRadiationDesc",
+			});
+		} else if (props.currentSorting === "shortwaveRadiationDesc") {
+			props.setSorting("");
+			dispatch({
+				type: "sortID",
+			});
+		} else {
+			props.setSorting("shortwaveRadiationAsc");
+			dispatch({
+				type: "sortshortwaveRadiationAsc",
+			});
+		}
+	}
+	function changePrecipitationSorting() {
+		if (props.currentSorting === "precipitationAsc") {
+			props.setSorting("precipitationDesc");
+			dispatch({
+				type: "sortprecipitationDesc",
+			});
+		} else if (props.currentSorting === "precipitationDesc") {
+			props.setSorting("");
+			dispatch({
+				type: "sortID",
+			});
+		} else {
+			props.setSorting("precipitationAsc");
+			dispatch({
+				type: "sortprecipitationAsc",
+			});
+		}
+	}
 
 	function sortingArrowDisplay(ascName, descName) {
 		if (props.currentSorting === ascName) {
@@ -102,6 +156,30 @@ export default function WeathersTableHeadings(props) {
 			>
 				<span>Wind speed</span>
 				{sortingArrowDisplay("windSpeedAsc", "windSpeedDesc")}
+			</div>
+			<div
+				className="weathers-table-heading__cloud-cover-column"
+				onClick={changeCloudCoverSorting}
+			>
+				<span>Cloud Cover</span>
+				{sortingArrowDisplay("cloudCoverAsc", "cloudCoverDesc")}
+			</div>
+			<div
+				className="weathers-table-heading__shortwave-radiation-column"
+				onClick={changeShortwaveRadiationSorting}
+			>
+				<span>Shortwave Radiation</span>
+				{sortingArrowDisplay(
+					"shortwaveRadiationAsc",
+					"shortwaveRadiationDesc",
+				)}
+			</div>
+			<div
+				className="weathers-table-heading__precipitation-column"
+				onClick={changePrecipitationSorting}
+			>
+				<span>Precipitation</span>
+				{sortingArrowDisplay("precipitationAsc", "precipitationDesc")}
 			</div>
 		</div>
 	);

@@ -17,7 +17,7 @@ export default async function getCoordsWeather(cityCoords) {
 			cityCoords.lat +
 			"&longitude=" +
 			cityCoords.lon +
-			"&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m",
+			"&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m,precipitation,shortwave_radiation,cloudcover",
 	);
 	const myJson = await response.json();
 	weather = myJson;

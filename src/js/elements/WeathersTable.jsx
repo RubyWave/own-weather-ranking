@@ -26,6 +26,9 @@ export default function WeathersTable() {
 					name={weather.name}
 					temperature={weather.temperature}
 					windSpeed={weather.windSpeed}
+					cloudCover={weather.cloudCover}
+					shortwaveRadiation={weather.shortwaveRadiation}
+					precipitation={weather.precipitation}
 				/>
 			))}
 		</div>

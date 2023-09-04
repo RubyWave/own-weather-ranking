@@ -1,7 +1,14 @@
 import closeIcon from "../../../public/images/close-icon.svg";
 import { useWeathersListDispatcher } from "../contexts/WeathersList";
 
-export default function WeatherRow({ name, temperature, windSpeed }) {
+export default function WeatherRow({
+	name,
+	temperature,
+	windSpeed,
+	cloudCover,
+	shortwaveRadiation,
+	precipitation,
+}) {
 	const dispatch = useWeathersListDispatcher();
 
 	function handleClick(e) {
@@ -22,6 +29,11 @@ export default function WeatherRow({ name, temperature, windSpeed }) {
 			</div>
 			<span className="weather-row__temperature">{temperature} °C</span>
 			<span className="weather-row__wind-speed">{windSpeed} km/h</span>
+			<span className="weather-row__wind-speed">{cloudCover}%</span>
+			<span className="weather-row__wind-speed">
+				{shortwaveRadiation} W/m²
+			</span>
+			<span className="weather-row__wind-speed">{precipitation} mm</span>
 		</div>
 	);
 }

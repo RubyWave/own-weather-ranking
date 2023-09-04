@@ -41,12 +41,18 @@ export default function DataFetcher() {
 			//all weathers are given hourly, so we take only first element of hour array TODO:change it to not be hourly
 			const temp = weather.hourly.temperature_2m[0];
 			const wndSp = weather.hourly.windspeed_10m[0];
+			const cldCvr = weather.hourly.cloudcover[0];
+			const shrtRad = weather.hourly.shortwave_radiation[0];
+			const prc = weather.hourly.precipitation[0];
 
 			newWeathersList.push({
 				id: cityID,
 				name: cityName,
 				temperature: temp,
 				windSpeed: wndSp,
+				cloudCover: cldCvr,
+				shortwaveRadiation: shrtRad,
+				precipitation: prc,
 			});
 		}
 
@@ -66,6 +72,7 @@ export default function DataFetcher() {
 		}
 
 		(async () => {
+			//weathers are iterated twice, to not call APIs when data is already there
 			for (const newCity of preList) {
 				let nonRequestedCity = true; //this flag will be false if city existed on old list
 				existingWeatherList.forEach((oldCity) => {
@@ -85,6 +92,9 @@ export default function DataFetcher() {
 					name: newWeather.name,
 					temperature: newWeather.temperature,
 					windSpeed: newWeather.windSpeed,
+					cloudCover: newWeather.cloudCover,
+					shortwaveRadiation: newWeather.shortwaveRadiation,
+					precipitation: newWeather.precipitation,
 				});
 			});
 			dispatchDataProgress({
