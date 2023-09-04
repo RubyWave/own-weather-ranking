@@ -15,6 +15,7 @@ export default function ListLister() {
 					max={category.max}
 					unit={category.unit}
 					defaultValue={category.defaultValue}
+					defaultWeight={category.defaultWeight}
 				/>
 			))}
 		</div>

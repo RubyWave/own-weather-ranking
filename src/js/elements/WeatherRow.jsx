@@ -41,7 +41,10 @@ export default function WeatherRow({
 					break;
 
 				case "Shortwave Radiation":
-					finalScore += calculateSinglescore(category, shortwaveRadiation);
+					finalScore += calculateSinglescore(
+						category,
+						shortwaveRadiation,
+					);
 					break;
 
 				case "Precipitation":
@@ -60,7 +63,7 @@ export default function WeatherRow({
 		const range = Math.abs(category.min) + Math.abs(category.max);
 		const liknenessOfCurrentToBest = 100 - (diffrence / range) * 100;
 
-		return liknenessOfCurrentToBest / 50;
+		return (liknenessOfCurrentToBest / 50) * category.weight;
 	}
 
 	return (

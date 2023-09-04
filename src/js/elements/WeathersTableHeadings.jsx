@@ -201,10 +201,10 @@ export default function WeathersTableHeadings(props) {
 			</div>
 			<div
 				className="weathers-table-heading__score-column"
-				onClick={changeScoreSorting}
+				// onClick={changeScoreSorting}
 			>
 				<span>Score</span>
-				{sortingArrowDisplay("scoreAsc", "scoreDesc")}
+				{/* {sortingArrowDisplay("scoreAsc", "scoreDesc")} */}
 			</div>
 		</div>
 	);

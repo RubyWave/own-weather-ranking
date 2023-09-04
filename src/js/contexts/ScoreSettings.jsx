@@ -14,6 +14,8 @@ const rankingCategories = [
 		unit: "°C",
 		current: 25,
 		defaultValue: 25,
+		weight: 1, //from 0 to 1
+		defaultWeight: 1, //from 0 to 1
 	},
 	{
 		label: "Wind Speed",
@@ -22,6 +24,8 @@ const rankingCategories = [
 		unit: "km/h",
 		current: 6,
 		defaultValue: 6,
+		weight: 0.5,
+		defaultWeight: 0.5,
 	},
 	{
 		label: "Cloud Cover",
@@ -30,22 +34,28 @@ const rankingCategories = [
 		unit: "%",
 		current: 15,
 		defaultValue: 15,
+		weight: 0.33,
+		defaultWeight: 0.33,
 	},
 	{
 		label: "Shortwave Radiation",
 		min: 0,
-		max: 2500,
+		max: 500,
 		unit: "W/m²",
 		current: 0,
 		defaultValue: 0,
+		weight: 0.125,
+		defaultWeight: 0.125,
 	},
 	{
 		label: "Precipitation",
 		min: 0,
-		max: 2500,
+		max: 150,
 		unit: "mm",
 		current: 0,
 		defaultValue: 0,
+		weight: 0.66,
+		defaultWeight: 0.66,
 	},
 ];
 
@@ -74,6 +84,13 @@ function scoreReducer(scores, action) {
 			return scores.map((singleScore) =>
 				singleScore.label === action.label
 					? { ...singleScore, current: action.newValue }
+					: singleScore,
+			);
+		}
+		case "changeWeight": {
+			return scores.map((singleScore) =>
+				singleScore.label === action.label
+					? { ...singleScore, weight: action.newValue }
 					: singleScore,
 			);
 		}
