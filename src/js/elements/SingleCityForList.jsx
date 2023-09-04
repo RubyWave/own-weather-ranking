@@ -4,7 +4,7 @@ import closeIcon from "../../../public/images/close-icon.svg";
 export default function SingleCityForList({ name, id }) {
 	const dispatch = usePreListDispatcher();
 
-	function handleClick(e) {
+	function handleClick() {
 		dispatch({
 			type: "remove",
 			id: id,
